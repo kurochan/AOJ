@@ -1,26 +1,20 @@
 #include <stdio.h>
 
 int solve(int a[],int next,int b,int c){
-    int buf;
-    int flag=0;
     if(next>=10){
         return 1;
     }
     if(a[next]>b){
-        buf=b;
-        b=a[next];
-        if(solve(a,next+1,b,c)){
-            flag=1;
+        if(solve(a,next+1,a[next],c)){
+            return 1;
         }
-        b=buf;
     }
     if(a[next]>c){
-        c=a[next];
-        if(solve(a,next+1,b,c)){
-            flag=1;
+        if(solve(a,next+1,b,a[next])){
+            return 1;
         }
     }
-    return flag;
+    return 0;
 }
 
 int main()
